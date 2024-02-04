@@ -4,10 +4,11 @@ import React, { useState } from 'react';
 import './card.scss';
 import { Task } from '@/types';
 import { CheckCircle2, FilePenIcon, XCircle } from 'lucide-react';
+import { deleteRequest } from '@/service/task-service';
 
 interface CardProps {
     task: Task;
-}
+  }
 
 const Card: React.FC<CardProps> = ({ task }) => {
     const [isModalOpen, setModalOpen] = useState(false);
@@ -20,11 +21,16 @@ const Card: React.FC<CardProps> = ({ task }) => {
         setModalOpen(false);
     };
 
-    const handleConfirmDelete = () => {
-        // Handle actual delete action here
-        console.log('Deleting task:', task);
-        setModalOpen(false);
-    };
+    const handleConfirmDelete = async () => {
+        try {
+          await deleteRequest(`/tasks/${task.taskId}`);
+          console.log('Task deleted successfully:', task);
+          setModalOpen(false);
+          // Optionally, you may also update the state or trigger a refresh of the task list
+        } catch (error) {
+          console.error('Error deleting task:', error);
+        }
+      };
 
     return (
         <div className="card">
@@ -52,10 +58,11 @@ const Card: React.FC<CardProps> = ({ task }) => {
 
             {/* Modal */}
             {isModalOpen && (
-                <div className="modal">
+                <div id={`modalId-${task.taskId}`} className="modal">
                     <div className="modal-content">
                         asd
                         <p>Are you sure you want to delete?</p>
+                        <p>{task.taskTitle}</p>
                         <div className="modal-buttons">
                             <button onClick={handleConfirmDelete} className='modal-btn-one'>Yes</button>
                             <button onClick={handleCloseModal} className='modal-btn-two'>No</button>

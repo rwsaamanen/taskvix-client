@@ -9,15 +9,19 @@ const CreateTask = () => {
     const [description, setDescription] = useState('');
 
     const createNewTask = async () => {
+        const timestamp = new Date().getTime();
+        const uniqueId = `TASK_${timestamp}`;
+    
         const newTask = {
+            taskId: uniqueId,
             taskTitle: title,
             taskContent: description,
             taskStatus: false,
             taskCreatedAt: new Date().toISOString(),
         };
-
+    
         console.log('New Task Payload:', newTask);
-
+    
         try {
             const response = await postRequest('/tasks', newTask);
             console.log('New task created:', response);
@@ -25,6 +29,7 @@ const CreateTask = () => {
             console.error('Error creating task:', error);
         }
     };
+    
 
     const handleCreateClick = () => {
         createNewTask();
