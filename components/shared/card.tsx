@@ -12,6 +12,9 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ task }) => {
     const [isModalOpen, setModalOpen] = useState(false);
+    const [isEditModalOpen, setEditModalOpen] = useState(false);
+    const [editedTitle, setEditedTitle] = useState(task.taskTitle);
+    const [editedContent, setEditedContent] = useState(task.taskContent);
 
     const handleDelete = () => {
         setModalOpen(true);
@@ -22,7 +25,6 @@ const Card: React.FC<CardProps> = ({ task }) => {
     };
 
     const handleMarkComplete = async () => {
-        // Update the task status to completed
         const updatedTask = { ...task, taskStatus: true };
 
         try {
@@ -30,6 +32,27 @@ const Card: React.FC<CardProps> = ({ task }) => {
             console.log('Task marked as complete:', updatedTask);
         } catch (error) {
             console.error('Error marking task as complete:', error);
+        }
+    };
+
+    const handleEdit = () => {
+        setEditModalOpen(true);
+    };
+
+    const handleCloseEditModal = () => {
+        setEditModalOpen(false);
+    };
+
+    const handleUpdate = async () => {
+        const updatedTask = { ...task, taskTitle: editedTitle, taskContent: editedContent };
+
+        try {
+            await putRequest(`/tasks/${task.taskId}`, updatedTask);
+            console.log('Task updated successfully:', updatedTask);
+            setEditModalOpen(false);
+            // Optionally, you may also update the state or trigger a refresh of the task list
+        } catch (error) {
+            console.error('Error updating task:', error);
         }
     };
 
@@ -62,20 +85,37 @@ const Card: React.FC<CardProps> = ({ task }) => {
                 <p>{task.taskContent}</p>
             </div>
             <div className='bottom-section'>
-                <div className='btn-edit'>
+                <div className='btn-edit' onClick={handleEdit}>
                     <FilePenIcon size={24} />
                 </div>
-                <div className='btn-mark-complete' onClick={handleMarkComplete}>
-                    <CheckCircle2 size={24} />
-                </div>
+                {task.taskStatus ? null : (
+                    <div className='btn-mark-complete' onClick={handleMarkComplete}>
+                        <CheckCircle2 size={24} />
+                    </div>
+                )}
             </div>
+
+            {isEditModalOpen && (
+                <div id={`editModalId-${task.taskId}`} className="edit-modal">
+                    <div className="edit-modal-content">
+                        <p>Edit Task</p>
+                        <h2>Title</h2>
+                        <input type="text" value={editedTitle} onChange={(e) => setEditedTitle(e.target.value)} />
+                        <h2>Content</h2>
+                        <textarea value={editedContent} onChange={(e) => setEditedContent(e.target.value)} />
+                        <div className="edit-modal-buttons">
+                            <button onClick={handleUpdate} className='edit-modal-btn-one'>Update</button>
+                            <button onClick={handleCloseEditModal} className='edit-modal-btn-two'>Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            )}
 
             {/* Modal */}
             {isModalOpen && (
                 <div id={`modalId-${task.taskId}`} className="modal">
                     <div className="modal-content">
-                        asd
-                        <p>Are you sure you want to delete?</p>
+                        <h2>Are you sure you want to delete?</h2>
                         <p>{task.taskTitle}</p>
                         <div className="modal-buttons">
                             <button onClick={handleConfirmDelete} className='modal-btn-one'>Yes</button>
