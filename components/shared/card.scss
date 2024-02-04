@@ -1,0 +1,133 @@
+.card {
+  margin: 0 auto;
+  background-color: #111;
+  border: 1px solid #222;
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding: 20px 20px;
+  margin-bottom: 20px;
+
+  .separator {
+    height: 1px;
+    width: 100%;
+    background-color: #333;
+  }
+
+  .top-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2px;
+
+    .title-section {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn-delete {
+      color: red;
+    }
+
+    .btn-delete:hover {
+        color: darkred;
+    }
+  }
+
+  h4 {
+    font-size: 24px;
+    margin: 0;
+  }
+
+  p {
+    font-size: 16px;
+    color: #888;
+    margin: 0;
+  }
+
+  .mid-section {
+    align-items: center;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+  }
+
+  .bottom-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .btn-edit {
+      padding: 2px 2px;
+      color: #999;
+      border-radius: 4px;
+    }
+
+    .btn-edit:hover {
+      color: #777;
+    }
+
+    .btn-mark-complete {
+      color: lightgreen;
+    }
+
+    .btn-mark-complete:hover {
+      color: green;
+    }
+  }
+
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    .modal-content {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+  
+      p {
+        margin-bottom: 20px;
+      }
+  
+      .modal-buttons {
+        display: flex;
+        justify-content: space-around;
+
+        .modal-btn-one {
+            padding: 6px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background: #f4f4f4;
+            color: #333;
+            width: 60px;
+        }
+
+        .modal-btn-one:hover {
+            background: #fdfdfd;
+            border: 1px solid #ccc;
+            color: #333;
+        }
+
+        .modal-btn-two {
+            padding: 6px;
+            border-radius: 5px;
+            background: #333;
+            color: #f0f0f0;
+            width: 60px;
+        }
+
+        .modal-btn-two:hover {
+            background: #111;
+            color: #f0f0f0;
+        }
+      }
+    }
+  }
+}
