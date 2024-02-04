@@ -23,6 +23,11 @@
       display: flex;
       gap: 10px;
       align-items: center;
+
+      .status {
+        padding: 3px 6px;
+        border-radius: 10px;
+      }
     }
 
     .btn-delete {
@@ -40,8 +45,8 @@
   }
 
   p {
-    font-size: 16px;
-    color: #888;
+    font-size: 12px;
+    color: #fdfdfd;
     margin: 0;
   }
 
