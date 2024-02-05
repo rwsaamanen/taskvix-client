@@ -67,7 +67,7 @@
     padding: 2px 5px;
     font-size: 1.5rem;
     font-weight: 500;
-    width: 100%;
+
     display: flex;
     justify-content: center;
     margin-top: 1rem;
@@ -75,9 +75,10 @@
     margin-right: auto;
     border-radius: 5px;
     background-color: #dedede;
+    color: black;
   }
 
   .button:hover {
-    background-color: #d6d6d6;
+    background-color: #ccc;
   }
 }

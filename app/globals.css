@@ -1,3 +1,8 @@
+textarea, button {
+  font-family: var(--font-poppins), sans-serif;
+  /* Add other styles as needed */
+}
+
 html,
 body,
 :root {
@@ -20,7 +25,9 @@ button {
   border: none;
   outline: none;
   appearance: none;
-  /* Add any other styles you want to reset here */
+  background-color: rgb(64 64 64);
+  border: 1px solid #666;
+  color: white;
 }
 
 /* Optionally, you can add specific styles for button elements */

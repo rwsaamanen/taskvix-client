@@ -23,9 +23,9 @@ const Navbar: React.FC = () => {
             </a>
           </div>
           <ul className={`nav-list ${isNavOpen ? 'open' : ''}`}>
-            <li><a href="#!">Home</a></li>
+            <li><a href="/">Home</a></li>
             <li><a href="/tasks">Tasks</a></li>
-            <li><a href="#!">About</a></li>
+            <li><a href="/about">About</a></li>
           </ul>
         </nav>
       </div>

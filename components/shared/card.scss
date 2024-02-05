@@ -47,7 +47,7 @@
   h2 {
     font-size: 20px;
     margin: 0;
-    color: black;
+    color: #fdfdfd;
   }
 
   p {
@@ -60,6 +60,12 @@
     align-items: center;
     padding: 10px 20px;
     margin-bottom: 20px;
+
+    p {
+      font-size: 16px;
+      color: #919191;
+      margin: 0;
+    }
   }
 
   .bottom-section {
@@ -98,7 +104,7 @@
     align-items: center;
 
     .modal-content {
-      background: #fff;
+      background: #111;
       padding: 20px;
       border-radius: 8px;
       text-align: center;
@@ -153,15 +159,17 @@
     align-items: center;
 
     .edit-modal-content {
-      background: #fff;
+      background: #111;
+      border: 1px solid #222;
       padding: 20px;
       height: 300px;
       width: 400px;
       border-radius: 8px;
       text-align: center;
 
-      p {
-        margin-bottom: 20px;
+      input,
+      textarea {
+        border: 1px solid #666;
       }
 
       .edit-modal-buttons {
@@ -187,6 +195,7 @@
           padding: 6px;
           border-radius: 5px;
           background: #333;
+          border: 1px solid #000;
           color: #f0f0f0;
           width: 60px;
         }
@@ -198,6 +207,10 @@
       }
     }
   }
+}
+
+.card:hover {
+  box-shadow: 0 0 10px 0 #333;
 }
 
 label {
